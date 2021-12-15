@@ -4,7 +4,7 @@
 //const fs is now a object which have all the functionality includes in file sysytem
 const fs = require('fs');   //file system at  node
 const util=require('util');   //get all info of file
-
+const chalk = require('chalk')
 
 const {lstat}=fs.promises;
 
@@ -29,12 +29,11 @@ fs.readdir(process.cwd(),async(err,filenames)=>{
 for(let stats of allStats){
 const index=allStats.indexOf(stats);
 
-console.log(filenames[index],stats.isFile());
+    //folders will be bold
+if(stats.isFile()){
+    console.log(filenames[index]);
+}else{
+    console.log(chalk.red.bold(filenames[index]));
 }
-    
-
-
-
-
-     
+}   
 });  
